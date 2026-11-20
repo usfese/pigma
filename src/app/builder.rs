@@ -211,6 +211,7 @@ impl App {
 
         let service = ApiService::new(api, cache.clone(), content_cache);
 
+        // Headless instances have no terminal to query for image capabilities.
         let picker = if with_terminal {
             Self::build_picker()
         } else {
