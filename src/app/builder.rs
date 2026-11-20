@@ -211,7 +211,11 @@ impl App {
 
         let service = ApiService::new(api, cache.clone(), content_cache);
 
-        let picker = Self::build_picker();
+        let picker = if with_terminal {
+            Self::build_picker()
+        } else {
+            Picker::halfblocks()
+        };
 
         let stream_client = Self::build_http_client(stream_proxy)?;
         let cover_http = Self::build_http_client(search_proxy)?;
